@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gratitude Prompt</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Update Gratitude Prompt</h4><br>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'update_gratitude_prompt' dr_id=data.id %}">
+                      {% csrf_token %}
+
+
+                     <div class="form-group">
+                      <label for="exampleTextarea1">Prompt</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Enter prompt here.." name="prompt">{{prompt.prompt}}</textarea>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleTextarea2">Challenge</label>
+                      <textarea class="form-control" id="exampleTextarea2" rows="4" placeholder="Enter Challenges here.." name="challenge">{{prompt.challenge}}</textarea>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName1">Week Number</label>
+                      <input type="number" class="form-control" id="exampleInputName1" placeholder="Number of the week" name="week_number" value="{{data.week_number}}" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

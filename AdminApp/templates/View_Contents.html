@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contents</title>
+</head>
+<body>
+    <div class="col-lg-14 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Created Contents</h4>
+                  <p class="card-description">
+<!--                    Add class <code>.table-hover</code>-->
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover" style="width:1600px;">
+                      <thead>
+                        <tr>
+                          <th>Image</th>
+                          <th>Title</th>
+                          <th>Content Type</th>
+                          <th>Content</th>
+                          <th>Category</th>
+                          <th>Author</th>
+                          <th>Options</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          {% for d in data %}
+                            <td>
+                              <img src="{{ d.Image.url }}" alt="Profile Image">
+                            </td>
+                            <td>{{ d.Title }}</td>
+                            <td>{{ d.ContentType }}</td>
+                            <td>{{ d.Content }}</td>
+                            <td>{{ d.Category }}</td>
+                            <td>{{ d.Author }}</td>
+                            <td class="inline-actions" style="padding-top:60%;">
+<!--                                <label class="badge badge-info">Fixed</label>-->
+                                <a href="{% url 'edit_content' co_id=d.id %}" class="btn btn-success btn-sm btn-icon-text">Edit</a>
+                                <a href="{% url 'delete_content' co_id=d.id %}" class="btn btn-danger btn-sm btn-icon-text">Delete</a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+<!--                        <tr>-->
+<!--                          <td>Messsy</td>-->
+<!--                          <td>Flash</td>-->
+<!--                          <td class="text-danger"> 21.06% <i class="mdi mdi-arrow-down"></i></td>-->
+<!--                          <td><label class="badge badge-warning">In progress</label></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <td>John</td>-->
+<!--                          <td>Premier</td>-->
+<!--                          <td class="text-success"> 35.00% <i class="mdi mdi-arrow-up"></i></td>-->
+<!--                          <td><label class="badge badge-info">Fixed</label></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <td>Peter</td>-->
+<!--                          <td>After effects</td>-->
+<!--                          <td class="text-danger"> 82.00% <i class="mdi mdi-arrow-down"></i></td>-->
+<!--                          <td><label class="badge badge-success">Completed</label></td>-->
+<!--                        </tr>-->
+<!--                        <tr>-->
+<!--                          <td>Dave</td>-->
+<!--                          <td>53275535</td>-->
+<!--                          <td class="text-success"> 98.05% <i class="mdi mdi-arrow-up"></i></td>-->
+<!--                          <td><label class="badge badge-warning">In progress</label></td>-->
+<!--                        </tr>-->
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+<style>
+    .inline-actions {
+    display: flex;
+    gap: 30px;
+}
+</style>
+</body>
+</html>
+{% endblock %}

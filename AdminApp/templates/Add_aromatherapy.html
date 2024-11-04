@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Aromatherapy</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Aromatherapy</h4><br>
+                  <form class="forms-sample" method="post" action="{% url 'add_aromatherapy_suggestion' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+
+                      <div class="form-group">
+                    <label for="exampleFormControlSelect1">Oil Name</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="oil_name">
+                        <option>--Select--</option>
+                        <option value="Lavender">Lavender</option>
+                        <option value="Eucalyptus">Eucalyptus</option>
+                        <option value="Peppermint">Peppermint</option>
+                        <option value="Chamomile">Chamomile</option>
+                        <option value="Tea Tree">Tea Tree</option>
+                        <option value="Rosemary">Rosemary</option>
+                        <option value="Lemon">Lemon</option>
+                        <option value="Cinnamon">Cinnamon</option>
+                        <option value="Lemongrass">Lemongrass</option>
+                        <option value="Clary sage">Clary sage</option>
+                        <option value="Geranium">Geranium</option>
+                        <option value="Roman chamomile">Roman chamomile</option>
+                        <option value="Ylang-Ylang">Ylang-Ylang</option>
+                    </select>
+                  </div>
+
+
+                      <div class="form-group">
+                      <label for="exampleTextarea4">Description </label>
+                      <textarea class="form-control" id="exampleTextarea4" rows="4" placeholder="Enter about Oil.." name="description"></textarea>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleTextarea1">Benefits </label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Enter about Benefits.." name="benefits"></textarea>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleTextarea2">Usage Instructions </label>
+                      <textarea class="form-control" id="exampleTextarea2" rows="4" placeholder="Enter Usage Instructions.." name="usage_instructions"></textarea>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName1">Recommended Time</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Recommended Time To Use" name="recommended_time" required>
+                    </div>
+
+
+                    <div class="form-group">
+                      <label for="exampleInputName3">Stress Level</label>
+                      <input type="text" class="form-control" id="exampleInputName3" placeholder="Level of Stress" name="stress_level" required>
+                    </div>
+
+
+                    <div class="form-group" >
+                      <label>Upload Image</label><br>
+                      <input type="file" name="image" >
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

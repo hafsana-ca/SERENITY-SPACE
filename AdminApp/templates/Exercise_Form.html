@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercise</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Exercise</h4><br>
+                  <form class="forms-sample" method="post" action="{% url 'add_exercise' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+
+                      <div class="form-group">
+                      <label for="exampleInputName1">Exercise name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Exercise name" name="name" required>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName2">Category of exercise</label>
+                      <input type="text" class="form-control" id="exampleInputName2" placeholder="Enter the category..." name="category" required>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName8">Recommended Time</label>
+                      <input type="text" class="form-control" id="exampleInputName8" placeholder="Enter the Time..." name="recommended_time" required>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName6">Target Areas</label>
+                      <input type="text" class="form-control" id="exampleInputName6" placeholder="Enter the category..." name="target_areas" required>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName9">Equipment Needed</label>
+                      <input type="text" class="form-control" id="exampleInputName9" placeholder="Enter the equipment needed for exercise..." name="equipment" required>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName3">Duration</label>
+                      <input type="number" class="form-control" id="exampleInputName3"  name="duration" required>
+                    </div>
+
+                      <div class="form-group">
+                    <label for="exampleFormControlSelect1">Difficulty</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="difficulty">
+                        <option>--Select--</option>
+                        <option value="Beginner">Beginner</option>
+                        <option value="Intermediate">Intermediate</option>
+                        <option value="Advanced">Advanced</option>
+                    </select>
+                  </div>
+
+
+                      <div class="form-group">
+                      <label for="exampleTextarea4">Instructions </label>
+                      <textarea class="form-control" id="exampleTextarea4" rows="4" placeholder="Enter the instructions.." name="instructions"></textarea>
+                    </div>
+
+                    <div class="form-group" >
+                      <label>Video url</label><br>
+                      <input type="url" name="video_url" class="form-control">
+                    </div>
+
+                    <div class="form-group" >
+                      <label>Upload Image</label><br>
+                      <input type="file" name="image" >
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

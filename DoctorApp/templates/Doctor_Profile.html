@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% extends 'Doctor_Home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ doctor.name }}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container my-5">
+        <div class="card">
+            <div class="row no-gutters">
+                <div class="col-md-4">
+                    <img src="{{ doctor.profile_picture.url }}" class="card-img" alt="Doctor's Image" style="margin:5px;">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ doctor.name }}</h3>
+                        <p class="card-text"><strong>Specialization:</strong> {{ doctor.specialization }}</p>
+                        <p class="card-text"><strong>Qualification:</strong> {{ doctor.qualification }}</p>
+                        <p class="card-text"><strong>Experience:</strong> {{ doctor.experience }} years</p>
+                        <p class="card-text"><strong>Email:</strong> {{ doctor.email }}</p>
+                        <p class="card-text"><strong>Location:</strong> {{ doctor.location }}</p>
+                        <p class="card-text"><strong>Gender:</strong> {{ doctor.gender }}</p>
+                        <p class="card-text"><strong>Institution:</strong> {{ doctor.institution }}</p>
+                        <p class="card-text"><strong>License Number:</strong> {{ doctor.license_number }}</p>
+                        <p class="card-text"><strong>Bio:</strong> {{ doctor.bio }}</p>
+                        <p class="card-text"><small class="text-muted">Registered on: {{ doctor.submitted_on }}</small></p>
+<!--                        <a href="#" class="btn btn-primary mt-3">Contact Doctor</a>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}

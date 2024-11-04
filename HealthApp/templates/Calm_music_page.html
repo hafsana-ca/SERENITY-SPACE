@@ -1,0 +1,454 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Calm Musics</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'homestyle/img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href=" {% static 'homestyle/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homestyle/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homestyle/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'homestyle/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'homestyle/css/style.css' %}" rel="stylesheet">
+    <style>
+/* Center the cards and reduce extra space */
+.container1 {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.music-cards {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Center the cards */
+    gap: 30px;
+}
+
+.music-card {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.music-card img {
+    width: 100%;
+    height: auto;
+}
+
+.music-card:hover {
+    transform: scale(1.05);
+}
+
+.music-cover {
+    width: 100%;
+    height: 80%;
+    object-fit: cover;
+    transition: filter 0.3s ease;
+}
+
+.music-card:hover .music-cover {
+    filter: brightness(50%);
+}
+
+.music-info {
+    padding: 10px;
+    text-align: center;
+}
+
+.music-info h2 {
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.play-icon {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 3rem;
+    color: #fff;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.music-card:hover .play-icon {
+    opacity: 1;
+}
+
+/* Music player style */
+.music-player {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #1e1e1e;
+    padding: 20px;
+    color: #fff;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+.player-cover {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 20px;
+}
+
+#playerTitle {
+    font-size: 1.5rem;
+}
+
+.music-player-right i {
+    font-size: 2rem;
+    cursor: pointer;
+    margin: 0 10px;
+}
+
+
+    </style>
+</head>
+
+<body style="background:#f5f5f5;">
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+
+    <!-- Navbar Start -->
+   <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0"
+    style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
+    <a href="{% url 'homepage' %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <img src="{% static 'homestyle/img/logo11.png' %}">
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="{% url 'dashboard_view' %}" class="nav-item nav-link ">Dashboard</a>
+            <a href="{% url 'journal_page' %}" class="nav-item nav-link">Journal</a>
+            <a href="{% url 'stress_screening' %}" class="nav-item nav-link">Stress Screening</a>
+            <a href="{% url 'resources_view' %}" class="nav-item nav-link">Resources</a>
+            <a href="{% url 'team_view' %}" class="nav-item nav-link">Support Circle</a>
+        </div>
+
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color:black;font-weight:500;">More</a>
+            <div class="dropdown-menu bg-light m-0">
+                <a href="{% url 'self_care_intro' %}" class="dropdown-item">Activities</a>
+                <a href="{% url 'event_list' %}" class="dropdown-item">Events</a>
+                <a href="{% url 'community_home' %}" class="dropdown-item"> Community</a>
+                <a href="{% url 'mindfulness_intro' %}" class="dropdown-item active"> Mindfulness</a>
+            </div>
+        </div>
+
+        <!-- Popup Trigger Icon -->
+        <a href="#" id="popupButton">
+            <img src="{% static 'homestyle/img/admin11.png' %}" >
+        </a>
+
+        <!-- Popup Box -->
+        <div id="popupBox" class="popup-box">
+            <div class="popup-content">
+                <span class="close-btn" id="closePopup">&times;</span>
+                <p>Welcome {{ request.session.username }}</p>
+                <a href="{% url 'user_logout' %}">User Logout</a>
+                <a href="http://127.0.0.1:8000/AdminApp/admin_login_page/">Admin Login</a>
+                <a href="http://127.0.0.1:8000/DoctorApp/dr_login/">Doctor Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+    <!-- Navbar End --><br>
+
+
+
+
+    <div class="container1">
+    <br><h1 class="section-title">Musics to Heal You</h1><br>
+    <div class="music-cards">
+        {% for exercise in calm_musics %}
+        <div class="music-card" data-url="{{ exercise.media_file.url }}" onclick="playMusic('{{ exercise.media_file.url }}', '{{ exercise.title }}', '{{ exercise.cover_image.url }}')">
+            <img src="{{ exercise.cover_image.url }}" alt="{{ exercise.title }}" class="music-cover" style="height:320px;">
+            <div class="music-info">
+                <h2>{{ exercise.title }}</h2>
+            </div>
+            <div class="play-icon">
+                <i class="fa fa-play"></i>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Music Player -->
+    <div class="music-player" id="musicPlayer" style="display: none;">
+        <div class="music-player-left">
+            <img src="" id="playerCoverImage" class="player-cover" alt="Cover Image">
+            <h2 id="playerTitle"></h2>
+        </div>
+        <audio id="audioPlayer" controls>
+            Your browser does not support the audio element.
+        </audio>
+        <div class="music-player-right">
+            <i class="fa fa-step-backward" id="previousTrack"></i>
+            <i class="fa fa-step-forward" id="nextTrack"></i>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+ <!-- Footer Start --><br><br><br><br>
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Serenity Space</h4>
+<!--                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>-->
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>ss@serenityspace.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Services</h4>
+                    <a class="btn btn-link" href="">Daily Journal</a>
+                    <a class="btn btn-link" href="">Stress Screening</a>
+                    <a class="btn btn-link" href="">Mood Tracking</a>
+                    <a class="btn btn-link" href="">Live Events</a>
+                    <a class="btn btn-link" href="">Self Help Activities</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Our Services</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">FAQs</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Newsletter</h4>
+                    <p>Subscribe to our newsletter.</p>
+                    <div class="position-relative w-100">
+                        <input class="form-control bg-light border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="{% url 'homepage' %}">serenityspace</a>, All Right Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+<!--                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'homestyle/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/parallax/parallax.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'homestyle/js/main.js' %}"></script>
+
+<script>
+    let currentTrackIndex = 0;
+    let currentPlaylist = [];
+
+    function playMusic(audioUrl, title, coverImageUrl) {
+        // Show the player
+        const musicPlayer = document.getElementById("musicPlayer");
+        musicPlayer.style.display = "flex";
+
+        // Update the player with track details
+        const audioPlayer = document.getElementById("audioPlayer");
+        const playerTitle = document.getElementById("playerTitle");
+        const playerCoverImage = document.getElementById("playerCoverImage");
+
+        audioPlayer.src = audioUrl;
+        playerTitle.textContent = title;
+        playerCoverImage.src = coverImageUrl;
+
+        // Start playing the selected track
+        audioPlayer.play();
+
+        // Add current song to playlist for next/previous functionality
+        currentPlaylist = Array.from(document.querySelectorAll('.music-card')).map((card, index) => ({
+            url: card.getAttribute('data-url'),
+            title: card.querySelector('.music-info h2').textContent,
+            cover: card.querySelector('img').src,
+            index: index
+        }));
+
+        // Set the current track index
+        currentTrackIndex = currentPlaylist.findIndex(track => track.url === audioUrl);
+    }
+
+    // Go to previous track
+    document.getElementById("previousTrack").addEventListener('click', function() {
+        if (currentTrackIndex > 0) {
+            currentTrackIndex--;
+            let previousTrack = currentPlaylist[currentTrackIndex];
+            playMusic(previousTrack.url, previousTrack.title, previousTrack.cover);
+        }
+    });
+
+    // Go to next track
+    document.getElementById("nextTrack").addEventListener('click', function() {
+        if (currentTrackIndex < currentPlaylist.length - 1) {
+            currentTrackIndex++;
+            let nextTrack = currentPlaylist[currentTrackIndex];
+            playMusic(nextTrack.url, nextTrack.title, nextTrack.cover);
+        }
+    });
+</script>
+
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning');
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error');
+            </script>
+        {% elif i.tags == 'info' %}
+            <script>
+                swal('{{i}}', '', 'info');
+            </script>
+        {% else %}
+            <script>
+                swal('{{i}}', '', 'success');
+            </script>
+
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+<style>
+     .popup-box {
+    display: none;
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+}
+
+.popup-box a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 10px 0;
+}
+
+.popup-box a:hover {
+    color: #4caf51;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var popupButton = document.getElementById('popupButton');
+    var popupBox = document.getElementById('popupBox');
+    var closePopup = document.getElementById('closePopup');
+
+    popupButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default anchor behavior
+        console.log("Popup button clicked!"); // Debug log
+        popupBox.style.display = (popupBox.style.display === 'block') ? 'none' : 'block';
+    });
+
+    closePopup.addEventListener('click', function () {
+        popupBox.style.display = 'none';
+    });
+});
+</script>
+
+</body>
+
+</html>

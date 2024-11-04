@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contents</title>
+</head>
+<body>
+    <div class="col-lg-14 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Contact Details</h4>
+                  <p class="card-description">
+<!--                    Add class <code>.table-hover</code>-->
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover" style="width:1600px;">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Message</th>
+                                <th>Options</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in data %}
+                            <tr>
+                                <td>{{ d.Name }}</td>
+                                <td>{{ d.Email }}</td>
+                                <td>{{ d.Message }}</td>
+                                <td class="inline-actions" style="padding-top:60%;">
+                                    <a href="{% url 'delete_contact' dr_id=d.id %}" class="btn btn-danger btn-sm btn-icon-text">Delete</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4">No contact details available.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+
+
+                  </div>
+                </div>
+              </div>
+            </div>
+<style>
+    .inline-actions {
+    display: flex;
+    gap: 30px;
+}
+</style>
+</body>
+</html>
+{% endblock %}

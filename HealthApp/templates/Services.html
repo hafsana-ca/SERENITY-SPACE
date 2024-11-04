@@ -1,0 +1,339 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Services</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'homestyle/img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href=" {% static 'homestyle/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homestyle/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homestyle/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'homestyle/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'homestyle/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+    <!-- Topbar Start -->
+    <div class="container-fluid  text-light px-0 py-2" style="background: #6abf6d;">
+        <div class="row gx-0 d-none d-lg-flex" >
+            <div class="col-lg-7 px-5 text-start">
+                <div class="h-100 d-inline-flex align-items-center me-4">
+<!--                    <span class="fa fa-phone-alt me-2"></span>-->
+                    <span></span>
+                </div>
+                <div class="h-100 d-inline-flex align-items-center">
+                    <span class="far fa-envelope me-2"></span>
+                    <span>ss@serenityspace.com</span>
+                </div>
+            </div>
+            <div class="col-lg-5 px-5 text-end">
+                <div class="h-100 d-inline-flex align-items-center mx-n2">
+
+<!--                    <a class="btn btn-link text-light" href=""><i class="fab fa-facebook-f"></i></a>-->
+<!--                    <a class="btn btn-link text-light" href=""><i class="fab fa-twitter"></i></a>-->
+<!--                    <a class="btn btn-link text-light" href=""><i class="fab fa-linkedin-in"></i></a>-->
+<!--                    <a class="btn btn-link text-light" href=""><i class="fab fa-instagram"></i></a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->
+
+
+    <!-- Navbar Start -->
+       <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0" style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
+        <a href="index.html" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+             <img src="{% static 'homestyle/img/logo11.png' %}" >
+        </a>
+        <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto p-4 p-lg-0">
+                <a href="{% url 'homepage' %}" class="nav-item nav-link ">Home</a>
+                <a href="{% url 'aboutus' %}" class="nav-item nav-link">About Us</a>
+                <a href="{% url 'services' %}" class="nav-item nav-link active">Services</a>
+<!--                <a href="project.html" class="nav-item nav-link">How It Works</a>-->
+<!--                <div class="nav-item dropdown">-->
+<!--                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>-->
+<!--                    <div class="dropdown-menu bg-light m-0">-->
+<!--                        <a href="feature.html" class="dropdown-item">Features</a>-->
+<!--                        <a href="quote.html" class="dropdown-item">Free Quote</a>-->
+<!--                        <a href="team.html" class="dropdown-item">Our Team</a>-->
+<!--                        <a href="testimonial.html" class="dropdown-item">Testimonial</a>-->
+<!--                        <a href="404.html" class="dropdown-item">404 Page</a>-->
+<!--                    </div>-->
+<!--                </div>-->
+                <a href="{% url 'faqs' %}" class="nav-item nav-link">FAQs</a>
+                <a href="{% url 'contact' %}" class="nav-item nav-link">Contact Us</a>
+            </div>
+            <a href="{% url 'UserLogin' %}" class="btn btn-primary py-4 px-lg-4 rounded-0 d-none d-lg-block"
+               style="border:12px solid white;background: #6abf6d;padding-top:-40px;">LOGIN<i class="fa fa-arrow-right ms-3"></i></a>
+        </div>
+    </nav>
+    <!-- Navbar End -->
+
+
+    <!-- Page Header Start -->
+    <div class="container-fluid page-header py-5 mb-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container text-center py-5">
+            <h1 class="display-3 text-white mb-4 animated slideInDown">Services</h1>
+            <nav aria-label="breadcrumb animated slideInDown">
+                <ol class="breadcrumb justify-content-center mb-0">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+<!--                    <li class="breadcrumb-item"><a href="#">Pages</a></li>-->
+                    <li class="breadcrumb-item active" aria-current="page">Services</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Header End -->
+
+
+    <!-- Service Start -->
+    <div class="container-xxl py-5">
+        <div class="container">
+            <div class="text-center mx-auto wow fadeInUp" data-wow-delay="0.1s" style="max-width: 500px;">
+                <p class="fs-5 fw-bold text-primary">Our Services</p>
+                <h1 class="display-5 mb-5">Services That We Offer For You</h1>
+            </div>
+            <div class="row g-4">
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded">
+                            <img class="img-fluid" src="{% static 'homestyle/img/journal2.avif' %}" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{% static 'homestyle/img/journal.png' %}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Daily Journal</h4>
+                            <p class="mb-4">Write and reflect on your thoughts, track mood, and maintain a private journal</p>
+                            <a class="btn btn-sm" href="{% url 'UserLogin' %}"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded">
+                            <img class="img-fluid" src="{% static 'homestyle/img/blogs.jpg' %}" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{% static 'homestyle/img/blog.png' %}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Resources</h4>
+                            <p class="mb-4">Access blogs, articles, and guides on mental health and self-care</p>
+                            <a class="btn btn-sm" href="{% url 'UserLogin' %}"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded">
+                            <img class="img-fluid" src="{% static 'homestyle/img/screen.jpg' %}" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{% static 'homestyle/img/stress.png' %}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Stress Screening</h4>
+                            <p class="mb-4">Take a quick test to evaluate stress levels and get management tips.</p>
+                            <a class="btn btn-sm" href="{% url 'UserLogin' %}"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded">
+                            <img class="img-fluid" src="{% static 'homestyle/img/online.avif' %}" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{% static 'homestyle/img/community.png' %}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Online Community </h4>
+                            <p class="mb-4"> A supportive space to interact, share stories, and encourage each other</p>
+                            <a class="btn btn-sm" href="{% url 'UserLogin' %}"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded">
+                            <img class="img-fluid" src="{% static 'homestyle/img/mind1.jpg' %}" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{% static 'homestyle/img/mood.png' %}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Mindfulness</h4>
+                            <p class="mb-4">Offering calm sounds and musics to help users to stay calm and relax </p>
+                            <a class="btn btn-sm" href="{% url 'UserLogin' %}"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded">
+                            <img class="img-fluid" src="{% static 'homestyle/img/pediatrics.jpg' %}" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{% static 'homestyle/img/dr.png' %}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Support Circle</h4>
+                            <p class="mb-4">To seek help for mental health professionals to be a better you</p>
+                            <a class="btn btn-sm" href="{% url 'UserLogin' %}"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded">
+                            <img class="img-fluid" src="{% static 'homestyle/img/offline.jpg' %}" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{% static 'homestyle/img/eventico.png' %}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Events</h4>
+                            <p class="mb-4">Events related to mental health and and you can book a seat</p>
+                            <a class="btn btn-sm" href="{% url 'UserLogin' %}"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
+                    <div class="service-item rounded d-flex h-100">
+                        <div class="service-img rounded">
+                            <img class="img-fluid" src="{% static 'homestyle/img/mental.jpg' %}" alt="">
+                        </div>
+                        <div class="service-text rounded p-5">
+                            <div class="btn-square rounded-circle mx-auto mb-3">
+                                <img class="img-fluid" src="{% static 'homestyle/img/self.png' %}" alt="Icon">
+                            </div>
+                            <h4 class="mb-3">Self - Care Activities</h4>
+                            <p class="mb-4">Daily exercises, mindfulness practices, and relaxation techniques </p>
+                            <a class="btn btn-sm" href="{% url 'UserLogin' %}"><i class="fa fa-plus text-primary me-2"></i>Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Service End -->
+
+
+    <!-- Footer Start -->
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Serenity Space</h4>
+<!--                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>-->
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>ss@serenityspace.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Services</h4>
+                    <a class="btn btn-link" href="">Daily Journal</a>
+                    <a class="btn btn-link" href="">Stress Screening</a>
+                    <a class="btn btn-link" href="">Mood Tracking</a>
+                    <a class="btn btn-link" href="">Live Events</a>
+                    <a class="btn btn-link" href="">Self Help Activities</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Our Services</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">FAQs</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Newsletter</h4>
+                    <p>Subscribe to our newsletter.</p>
+                    <div class="position-relative w-100">
+                        <input class="form-control bg-light border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="{% url 'homepage' %}">serenityspace</a>, All Right Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+<!--                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'homestyle/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/parallax/parallax.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'homestyle/js/main.js' %}"></script>
+</body>
+
+</html>

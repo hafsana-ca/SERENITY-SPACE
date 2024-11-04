@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Mindfulness</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                      <h4 class="card-title">Add Musics</h4><br>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'add_calm_music' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group" >
+                      <label>Cover Image</label><br>
+                      <input type="file" name="cover_image" style="border:1px solid #e4e6f6;width:100%;height:45px;padding:10px;" required>
+                    </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputName1">Title</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Title" name="title" required>
+                    </div>
+
+                      <div class="form-group" >
+                      <label>Upload Media Files(Audio / Video / Image)</label><br>
+                      <input type="file" name="media_file" style="border:1px solid #e4e6f6;width:100%;height:45px;padding:10px;" required>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleTextarea1">Description (Optional):</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Enter your content here.." name="description"></textarea>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

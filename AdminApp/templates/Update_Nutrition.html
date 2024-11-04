@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Nutritional Tip</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                      <h4 class="card-title">Update Nutritional Tips</h4><br>
+                  <form class="forms-sample" method="post" action="{% url 'update_nutritional_tips' data_id=data.id %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+
+                    <div class="form-group">
+                      <label for="exampleInputName1">Title</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Title" name="title" value="{{data.title}}" required>
+                    </div>
+
+
+                      <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Enter about Nutritional Tip" name="description">{{data.description}}</textarea>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName2">Category</label>
+                      <input type="text" class="form-control" id="exampleInputName2" placeholder="Category" name="category" value="{{data.category}}" required>
+                    </div>
+
+                     <div class="form-group" >
+                      <label>Image upload</label><br>
+                         <img src="{{data.image.url}}" width="100px" height="100px"><br>
+                      <input type="file" name="image" style="border:1px solid #e4e6f6;width:100%;height:45px;padding:10px;">
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName3">Source of Tip</label>
+                      <input type="text" class="form-control" id="exampleInputName3" placeholder="Source" name="source" value="{{data.source}}" required>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName3">Source URL</label>
+                      <input type="url" class="form-control" id="exampleInputName4" placeholder="Source URL" name="source_url" value="{{data.source_url}}" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

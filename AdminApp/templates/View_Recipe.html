@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Healthy Recipe</title>
+</head>
+<body>
+    <div class="col-lg-14 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Healthy Recipe</h4>
+                  <p class="card-description">
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover" style="width:1600px;">
+                      <thead>
+                        <tr>
+                          <th>Title</th>
+                          <th>Ingredients</th>
+                          <th>Instructions</th>
+                          <th>Nutrition Info</th>
+                          <th>Category</th>
+                          <th>Preparation Time</th>
+                          <th>Health Benefit</th>
+                          <th>Image</th>
+                          <th>Options</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          {% for d in recipes %}
+                            <td>{{ d.title }}</td>
+                            <td>{{ d.ingredients }}</td>
+                            <td>{{ d.instructions }}</td>
+                            <td>{{ d.nutrition_info }}</td>
+                            <td>{{ d.category }}</td>
+                            <td>{{ d.preparation_time }}</td>
+                            <td>{{ d.health_benefit }}</td>
+                            <td>
+                              <img src="{{ d.image.url }}" alt="Profile Image">
+                            </td>
+                            <td class="inline-actions" style="padding-top:30%;">
+                                <a href="{% url 'edit_recipe' co_id=d.id %}" class="btn btn-success btn-sm btn-icon-text">Edit</a>
+                                <a href="{% url 'delete_recipe' dr_id=d.id %}" class="btn btn-danger btn-sm btn-icon-text">Delete</a>
+                            </td>
+
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+<style>
+    .inline-actions {
+    display: flex;
+    gap: 30px;
+}
+</style>
+</body>
+</html>
+{% endblock %}

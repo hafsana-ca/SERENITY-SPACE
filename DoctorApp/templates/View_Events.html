@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+{% extends 'Doctor_Home.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div class="col-lg-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">View Events</h4>
+                  <p class="card-description">
+
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover">
+                      <thead>
+                        <tr>
+                          <th>Title</th>
+                          <th>Description</th>
+                          <th>Category</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                          <th>Location</th>
+                          <th>Organizer</th>
+                          <th>Email</th>
+                          <th>Cover Image</th>
+                          <th>Options</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      {% for d in events %}
+                        <tr>
+                          <td>{{d.title}}</td>
+                          <td>{{d.description}}</td>
+                          <td>{{d.category}}</td>
+                          <td>{{d.date}}</td>
+                          <td>{{d.time}}</td>
+                          <td>{{d.location}}</td>
+                          <td>{{d.organizer}}</td>
+                          <td>{{d.contact_email}}</td>
+                          <td>
+                              <img src="{{ d.cover_image.url }}" alt="Profile Image">
+                          </td>
+                          <td>
+                            <a href="{% url 'edit_event' event_id=d.id %}">
+                              <button type="button" class="btn btn-success btn-rounded btn-fw">Edit</button>
+                            </a>
+                          </td>
+                          <td>
+                            <a href="{% url 'delete_event' event_id=d.id %}">
+                              <button type="button" class="btn btn-danger btn-rounded btn-fw">Delete</button>
+                            </a>
+                          </td>
+                        </tr>
+                      {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

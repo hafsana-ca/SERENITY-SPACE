@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Journal</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+
+    <!-- Favicon -->
+    <link href="{% static 'homestyle/img/favicon.ico' %}" rel="icon">
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500;600;700&family=Open+Sans:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link href=" {% static 'homestyle/lib/animate/animate.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homestyle/lib/owlcarousel/assets/owl.carousel.min.css' %}" rel="stylesheet">
+    <link href="{% static 'homestyle/lib/lightbox/css/lightbox.min.css' %}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'homestyle/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'homestyle/css/style.css' %}" rel="stylesheet">
+</head>
+
+<body style="background:#f5f5f5;">
+    <!-- Spinner Start -->
+    <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;"></div>
+    </div>
+    <!-- Spinner End -->
+
+
+
+    <!-- Navbar Start -->
+       <nav class="navbar navbar-expand-lg bg-white navbar-light sticky-top p-0"
+    style="box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 10px 0 rgba(0, 0, 0, 0.15);">
+    <a href="{% url 'homepage' %}" class="navbar-brand d-flex align-items-center px-4 px-lg-5">
+        <img src="{% static 'homestyle/img/logo11.png' %}">
+    </a>
+    <button type="button" class="navbar-toggler me-4" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav ms-auto p-4 p-lg-0">
+            <a href="{% url 'dashboard_view' %}" class="nav-item nav-link ">Dashboard</a>
+            <a href="{% url 'journal_page' %}" class="nav-item nav-link active">Journal</a>
+            <a href="{% url 'stress_screening' %}" class="nav-item nav-link">Stress Screening</a>
+            <a href="{% url 'resources_view' %}" class="nav-item nav-link">Resources</a>
+            <a href="{% url 'team_view' %}" class="nav-item nav-link">Support Circle</a>
+        </div>
+
+        <div class="nav-item dropdown">
+            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" style="color:black;font-weight:500;">More</a>
+            <div class="dropdown-menu bg-light m-0">
+                <a href="{% url 'self_care_intro' %}" class="dropdown-item">Activities</a>
+                <a href="{% url 'event_list' %}" class="dropdown-item">Events</a>
+                <a href="{% url 'community_home' %}" class="dropdown-item"> Community</a>
+                <a href="{% url 'mindfulness_intro' %}" class="dropdown-item "> Mindfulness</a>
+            </div>
+        </div>
+
+        <!-- Popup Trigger Icon -->
+        <a href="#" id="popupButton">
+            <img src="{% static 'homestyle/img/admin11.png' %}" >
+        </a>
+
+        <!-- Popup Box -->
+        <div id="popupBox" class="popup-box">
+            <div class="popup-content">
+                <span class="close-btn" id="closePopup">&times;</span>
+                <p>Welcome {{ request.session.username }}</p>
+                <a href="{% url 'user_logout' %}">User Logout</a>
+                <a href="http://127.0.0.1:8000/AdminApp/admin_login_page/">Admin Login</a>
+                <a href="http://127.0.0.1:8000/DoctorApp/dr_login/">Doctor Login</a>
+            </div>
+        </div>
+    </div>
+</nav>
+    <!-- Navbar End --><br><br><br>
+
+
+
+   <div class="container1">
+    <h1>🍃 My Journal Entries 🍃</h1>
+    <button onclick="window.location.href='{% url 'journal_page' %}'">Back to Journal</button>
+
+    {% for journal in journals %}
+    <div class="journal-entry">
+        <div class="journal-title">
+            {{ journal.title }}
+        </div><br>
+        <div class="journal-mood">State of mind : {{ journal.mood }}</div><br><br>
+        <div class="journal-content">{{ journal.content|linebreaksbr }}</div><br>
+        <div class="journal-date">{{ journal.date_created }}</div><br>
+        <div class="journal-image" style="margin-left:50px;">
+             ˚˖𓍢ִ໋🍃✧˚.💚⋆˚˖𓍢ִ໋🍃✧˚.💚⋆ &nbsp;&nbsp;&nbsp;<img src="{{ journal.image.url }}" alt="Journal Image" class="journal-img"
+          style="height:230px;width:230px;border:5px solid #AFE1AF;padding:10px;"> &nbsp;&nbsp;&nbsp;˚˖𓍢ִ໋🍃✧˚.💚⋆ ˚˖𓍢ִ໋🍃✧˚.💚⋆
+        </div><br>
+
+        <!-- Delete button -->
+        <form action="{% url 'delete_journal_entry' journal.id %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" onclick="return confirm('Are you sure you want to delete this entry?');" class="delete-button">Delete</button>
+        </form>
+
+    </div>
+    {% empty %}
+    <p>No journal entries found.</p>
+    {% endfor %}
+</div>
+
+
+
+    <!-- Footer Start --><br><br><br><br>
+    <div class="container-fluid bg-dark text-light footer mt-5 py-5 wow fadeIn" data-wow-delay="0.1s">
+        <div class="container py-5">
+            <div class="row g-5">
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Serenity Space</h4>
+<!--                    <p class="mb-2"><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>-->
+                    <p class="mb-2"><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                    <p class="mb-2"><i class="fa fa-envelope me-3"></i>ss@serenityspace.com</p>
+                    <div class="d-flex pt-2">
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-twitter"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-facebook-f"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-youtube"></i></a>
+                        <a class="btn btn-square btn-outline-light rounded-circle me-2" href=""><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Services</h4>
+                    <a class="btn btn-link" href="">Daily Journal</a>
+                    <a class="btn btn-link" href="">Stress Screening</a>
+                    <a class="btn btn-link" href="">Mood Tracking</a>
+                    <a class="btn btn-link" href="">Live Events</a>
+                    <a class="btn btn-link" href="">Self Help Activities</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Quick Links</h4>
+                    <a class="btn btn-link" href="">About Us</a>
+                    <a class="btn btn-link" href="">Contact Us</a>
+                    <a class="btn btn-link" href="">Our Services</a>
+                    <a class="btn btn-link" href="">Terms & Condition</a>
+                    <a class="btn btn-link" href="">FAQs</a>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h4 class="text-white mb-4">Newsletter</h4>
+                    <p>Subscribe to our newsletter.</p>
+                    <div class="position-relative w-100">
+                        <input class="form-control bg-light border-light w-100 py-3 ps-4 pe-5" type="text" placeholder="Your email">
+                        <button type="button" class="btn btn-primary py-2 position-absolute top-0 end-0 mt-2 me-2">SignUp</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Copyright Start -->
+    <div class="container-fluid copyright py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                    &copy; <a class="border-bottom" href="{% url 'homepage' %}">serenityspace</a>, All Right Reserved.
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+<!--                    Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a> Distributed By <a href="https://themewagon.com">ThemeWagon</a>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'homestyle/lib/wow/wow.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/easing/easing.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/waypoints/waypoints.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/owlcarousel/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/counterup/counterup.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/parallax/parallax.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/isotope/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'homestyle/lib/lightbox/js/lightbox.min.js' %}"></script>
+
+    <!-- Template Javascript -->
+    <script src="{% static 'homestyle/js/main.js' %}"></script>
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+{% if messages %}
+    {% for i in messages %}
+
+        {% if i.tags == 'warning' %}
+            <script>
+                swal('{{i}}', '', 'warning');
+            </script>
+        {% elif i.tags == 'error' %}
+            <script>
+                swal('{{i}}', '', 'error');
+            </script>
+        {% elif i.tags == 'info' %}
+            <script>
+                swal('{{i}}', '', 'info');
+            </script>
+        {% else %}
+            <script>
+                swal('{{i}}', '', 'success');
+            </script>
+
+        {% endif %}
+    {% endfor %}
+{% endif %}
+
+
+<style>
+body {
+    background-color: #f0f9f0; /* Light green background */
+}
+
+.container1 {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for container */
+    border-radius: 15px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+}
+
+h1 {
+    text-align: center;
+    color: #167316; /* Soft greenish text color */
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 15px;
+    background-color: #AFE1AF; /* Main color #AFE1AF for button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #91c791; /* Darker shade of #AFE1AF for hover effect */
+}
+
+.journal-entry {
+    background-color: #f2f9f2; /* Light pastel green */
+    border: 1px solid #AFE1AF; /* Border in #AFE1AF */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    padding: 20px;
+    margin: 15px 0; /* Space between entries */
+}
+
+.journal-title {
+    font-size: 1.5em;
+    color: #66a866; /* Darker green for title */
+}
+
+.journal-mood {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+    color: #4d7f4d; /* Even darker green for mood */
+}
+
+.journal-content {
+    font-size: 1.2em;
+    color: #333; /* Darker color for contrast */
+}
+
+.journal-date {
+    font-size: 0.9em;
+    color: #666; /* Grey for date */
+}
+
+.journal-img {
+    border: 5px solid #AFE1AF; /* Green border for image */
+    border-radius: 8px;
+}
+
+.delete-button {
+    background-color: #58aa69; /* Red delete button */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background-color: #468854; /* Darker red on hover */
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    vertical-align: middle;
+}
+</style>
+
+<style>
+     .popup-box {
+    display: none;
+    position: fixed;
+    top: 50px;
+    right: 20px;
+    width: 300px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    padding: 20px;
+}
+
+.popup-box a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    padding: 10px 0;
+}
+
+.popup-box a:hover {
+    color: #4caf51;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
+    cursor: pointer;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    var popupButton = document.getElementById('popupButton');
+    var popupBox = document.getElementById('popupBox');
+    var closePopup = document.getElementById('closePopup');
+
+    popupButton.addEventListener('click', function (event) {
+        event.preventDefault(); // Prevent the default anchor behavior
+        console.log("Popup button clicked!"); // Debug log
+        popupBox.style.display = (popupBox.style.display === 'block') ? 'none' : 'block';
+    });
+
+    closePopup.addEventListener('click', function () {
+        popupBox.style.display = 'none';
+    });
+});
+</script>
+
+</body>
+
+</html>

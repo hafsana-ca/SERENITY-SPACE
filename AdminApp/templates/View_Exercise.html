@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Meditation</title>
+</head>
+<body>
+    <div class="col-lg-14 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">View Meditation Sessions</h4>
+                  <p class="card-description">
+<!--                    Add class <code>.table-hover</code>-->
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover" style="width:1600px;">
+                        <thead>
+                            <tr>
+                                <th>Exercise Name</th>
+                                <th>Category</th>
+                                <th>Target Areas</th>
+                                <th>Recommended Time</th>
+                                <th>Equipment Needed</th>
+                                <th>Duration</th>
+                                <th>Difficulty</th>
+                                <th>Instructions</th>
+                                <th>Image</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for d in exercises %}
+                            <tr>
+                                <td>{{ d.name }}</td>
+                                <td>{{ d.category }}</td>
+                                <td>{{ d.target_areas }}</td>
+                                <td>{{ d.recommended_time }}</td>
+                                <td>{{ d.equipment }}</td>
+                                <td>{{ d.duration }}</td>
+                                <td>{{ d.difficulty }}</td>
+                                <td>{{ d.instructions }}</td>
+                                <td>
+                              <img src="{{ d.image.url }}" alt="Cover Image">
+                            </td>
+                                <td class="inline-actions" >
+                                    <a href="{% url 'edit_exercise' co_id=d.id %}" class="btn btn-success btn-sm btn-icon-text">Edit</a>
+                                    <a href="{% url 'delete_selfcare_exercise' dr_id=d.id %}" class="btn btn-danger btn-sm btn-icon-text">Delete</a>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="4">No meditation details available.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+<style>
+    .inline-actions {
+    display: flex;
+    gap: 30px;
+}
+</style>
+</body>
+</html>
+{% endblock %}

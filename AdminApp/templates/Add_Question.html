@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Questions and options</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Questions</h4><br>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'add_question' %}" >
+                      {% csrf_token %}
+
+
+                    <div class="form-group">
+                      <label for="exampleInputName1">Question</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Question" name="question">
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName2">Options (Comma Separated)</label>
+                      <input type="text" class="form-control" id="exampleInputName2" placeholder="Option1, Option2, Option3, Option4" name="options">
+                    </div>
+
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

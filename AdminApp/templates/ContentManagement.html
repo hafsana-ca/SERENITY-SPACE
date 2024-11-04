@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Content Management</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Add Contents</h4><br>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'add_content' %}" enctype="multipart/form-data">
+                      {% csrf_token %}
+                      <div class="form-group" >
+                      <label>File upload</label><br>
+                      <input type="file" name="Image" style="border:1px solid #e4e6f6;width:100%;height:45px;padding:10px;">
+                    </div>
+                    <div class="form-group">
+                      <label for="exampleInputName1">Title</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Title" name="Title">
+                    </div>
+
+                      <div class="form-group">
+                    <label for="exampleFormControlSelect1">Content Type</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="Content_Type">
+                      <option>Select Type</option>
+                      <option>Blogs</option>
+                      <option>Article</option>
+                      <option>Guide</option>
+                      <option>Facts</option>
+                      <option>Video</option>
+                      <option>Podcast</option>
+                      <option>Infographics</option>
+                    </select>
+                  </div>
+
+                      <div class="form-group">
+                      <label for="exampleTextarea1">Content</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Enter your content here.." name="Content"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                    <label for="exampleFormControlSelect2">Select Category</label>
+                    <select class="form-control" id="exampleFormControlSelect2" name="Category">
+                      <option>Select</option>
+                      <option>Stress Management</option>
+                      <option>Substance Use</option>
+                      <option>Mental Health Tips</option>
+                      <option>Suicide Awareness</option>
+                      <option>Therapy Guides</option>
+                      <option>Mindful Exercises</option>
+                      <option>Self Care</option>
+                      <option>Relationships</option>
+                      <option>Front Line Workers</option>
+                    </select>
+                  </div>
+
+                    <div class="form-group">
+                      <label for="exampleInputCity1">Author</label>
+                      <input type="text" class="form-control" id="exampleInputCity1" placeholder="Author" name="Author">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

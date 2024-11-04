@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Challenges</title>
+</head>
+<body>
+    <div class="col-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                      <h4 class="card-title">Add Challenges</h4><br>
+<!--                  <p class="card-description">-->
+<!--                    Basic form elements-->
+<!--                  </p>-->
+                  <form class="forms-sample" method="post" action="{% url 'update_challenge' dr_id=data.id %}" >
+                      {% csrf_token %}
+
+
+                    <div class="form-group">
+                      <label for="exampleInputName1">Challenge Name</label>
+                      <input type="text" class="form-control" id="exampleInputName1" placeholder="Name of Challenge" name="name" value="{{ challenge.name }}" required>
+                    </div>
+
+
+                      <div class="form-group">
+                      <label for="exampleTextarea1">Description</label>
+                      <textarea class="form-control" id="exampleTextarea1" rows="4" placeholder="Enter about Challenge" name="description" >{{ challenge.description }}</textarea>
+                    </div>
+
+                      <div class="form-group">
+                    <label for="exampleFormControlSelect1">Duration</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="duration" value="{{ challenge.duration }}">
+                        <option>--Select--</option>
+                        <option value="daily">Daily</option>
+                        <option value="weekly">Weekly</option>
+                        <option value="multi-week">Multi-Week</option>
+                        <option value="monthly">Monthly</option>
+                    </select>
+                  </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName2">Start Date</label>
+                      <input type="date" class="form-control" id="exampleInputName2" name="start_date" value="{{ challenge.start_date }}" required>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName3">End Date</label>
+                      <input type="date" class="form-control" id="exampleInputName3" name="end_date" value="{{ challenge.end_date }}" required>
+                    </div>
+
+                      <div class="form-group">
+                      <label for="exampleInputName4">Total Tasks</label>
+                      <input type="text" class="form-control" id="exampleInputName4" placeholder="No.of Tasks" name="total_tasks" value="{{ challenge.total_tasks }}" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary mr-2">Submit</button>
+                    <button class="btn btn-light">Cancel</button>
+                  </form>
+                </div>
+              </div>
+            </div>
+</body>
+</html>
+{% endblock %}

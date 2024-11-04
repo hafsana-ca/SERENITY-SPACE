@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% extends 'index.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contents</title>
+</head>
+<body>
+    <div class="col-lg-14 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <h4 class="card-title">Created Contents</h4>
+                  <p class="card-description">
+<!--                    Add class <code>.table-hover</code>-->
+                  </p>
+                  <div class="table-responsive">
+                    <table class="table table-hover" style="width:1600px;">
+                      <thead>
+                        <tr>
+                          <th>Image</th>
+                          <th>Title</th>
+                          <th>Description</th>
+                          <th>Category</th>
+                          <th>Date</th>
+                          <th>Time</th>
+                          <th>Location</th>
+                          <th>Organizer</th>
+                          <th>Organizer Information</th>
+                          <th>Email</th>
+
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          {% for d in events %}
+                            <td>
+                              <img src="{{ d.cover_image.url }}" alt="Profile Image">
+                            </td>
+                            <td>{{ d.title }}</td>
+                            <td>{{ d.description }}</td>
+                            <td>{{ d.category }}</td>
+                            <td>{{ d.date }}</td>
+                            <td>{{ d.time }}</td>
+                            <td>{{ d.location }}</td>
+                            <td>{{ d.organizer }}</td>
+                            <td>{{ d.organizer_info }}</td>
+                            <td>{{ d.contact_email }}</td>
+
+                        </tr>
+                        {% endfor %}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+<style>
+    .inline-actions {
+    display: flex;
+    gap: 30px;
+}
+</style>
+</body>
+</html>
+{% endblock %}
+
